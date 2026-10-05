@@ -1,0 +1,23 @@
+*{
+    box-sizing: border-box;
+}
+
+#dateDay{
+    width: 50%;
+    margin: auto;
+    padding: 15px;
+    border-radius: 15px;
+    border:1px solid blue;
+}
+.fixe{
+    display: inline-block;
+    width: 100px;
+}
+input[type="date"], input[type="datetime"]{
+   
+    display: inline-block;
+    width: 200px;
+}
+.wrap{
+    margin-bottom: 10px;
+}
