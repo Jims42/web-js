@@ -31,10 +31,114 @@ function calculateAge(){
     let dateDiff=today-birthDate;
     let nbyear=today.getFullYear()-birthDate.getFullYear();
     let nbyearV2=Math.floor(dateDiff/1000/6/6/24/365.25);
-    validationSumarize.innerHTML +=`<br> il s'est écoulé ${nbyear} depuis votre naissance`;
+    validationSumarize.innerHTML +=`<br> il s'est écoulé ${nbyear} années depuis votre naissance`;
 
+
+let mois=birthDate.toLocaleString('fr-FR',{month:'long'});
+let jour=birthDate.getDay();
+validationSumarize.innerHTML+=`<br> vous etes né(e) le ${jour} , ${mois}`;
+    
+const signe=signeAstro(birthDate);
+validationSumarize.innerHTML+=`<br> votre signe astrologique est ${signe}`
 }
 }
+function signeAstro(birthDate){
+    let signe;
+let mois=birthDate.toLocaleString('fr-FR',{month:'long'});
+let jour=birthDate.getDay();
+    switch (mois){
+        case "janvier":
+            if(jour>20){
+                signe ="Verseau ♒";
+            }else{
+                signe="Capricorne ♑";
+            } 
+          break;
+    case "février ♈":
+        if(jour>19){
+            signe="Poissions ♓"
+        }else{
+signe = "Verseau ♒"; 
+        }
+      break;
+    case "mars":
+        if(jour>21){
+            signe="Bélier ♈";
+        }else{
+            signe = "Poissons ♓";
+        }
+      break;
+    case "avril":
+        if(jour>20){
+            signe="Taureau ♉";
+        }else{
+            signe="bélier";
+        }
+      break;
+    case "mai":
+      if(jour>21){
+            signe="Gémeaux ♊";
+        }else{
+            signe="Teaureau ♉";
+        }
+      break;
+    case "juin":
+        if(jour>21){
+            signe="Cancer ♋";
+        }else{
+            signe="Gémeaux ♊";
+        }
+      break;
+    case "juillet":
+        if(jour>23){
+            signe="Lion ♌";
+        }else{
+            signe="Cancer ♋";
+        }
+      break;
+    case "août":
+     if(jour>23){
+            signe="Vierge ♍";
+        }else{
+            signe="Lion ♌";
+        }
+      break;
+    case "septembre":
+      if(jour>23){
+            signe="Balance ♎";
+        }else{
+            signe="Vierge ♍";
+        }
+      break;
+    case "octobre":
+      if(jour>23){
+            signe="Scorpion ♏";
+        }else{
+            signe="Balance ♎";
+        }
+      break;
+    case "novembre":
+      if(jour>21){
+            signe="Sagittaire ♐";
+        }else{
+            signe="Scorpion ♏";
+        }
+      break;
+    case "décembre":
+      if(jour>21){
+            signe="Capricorne ♑";
+        }else{
+            signe="Sagittaire ♐";
+        }
+      break;
+    default:
+      signe = "Mois invalide";
+  }
+
+  return signe;   
+    }
+
+
 btnAge.addEventListener("click", function(){
     calculateAge();
     console.log("test");
