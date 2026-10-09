@@ -81,7 +81,7 @@ signe = "Verseau ♒";
       if(jour>20){
             signe="Gémeaux ♊";
         }else{
-            signe="Teaureau ♉";
+            signe="Taureau ♉";
         }
       break;
     case "juin":
