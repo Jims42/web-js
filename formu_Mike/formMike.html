@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formulaire</title>
+    <script src="formMike.js" type="module"></script>
+</head>
+<body>
+    <h1>Identifiez-vous !</h1>
+    <form action="" method="get" id="myForm">
+        <div id="error">
+            <ul></ul>
+        </div>
+        <fieldset>
+            <label for="mail">adresse email :</label>
+            <input type="email" name="" id="mail" placeholder="adresse email" required pattern="[A-Za-z0-9]+@[\w]{2,}\.[A-Za-z0-9]{2;}">
+            <label for="password">mot de passe :</label>
+            <input type="password" name="" id="password" placeholder="mot de passe" required pattern=".{12,}">
+            <button type="button">valider</button>
+        </fieldset>
+    </form>
+</body>
+</html>
