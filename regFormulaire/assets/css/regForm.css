@@ -21,10 +21,10 @@ main {
     max-width: 100%;
 }
 
-label, input, button {
+label, input, button{
     display: inline-block;
     width: 20rem;
-    margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 fieldset{
 
@@ -47,4 +47,21 @@ fieldset{
     cursor: pointer;
 
    
+}
+.erreur{
+    width: 20rem;
+    display: block;
+    text-align: center;
+    margin-top: 0;
+    margin-left: 47%;
+    font-size: 0.6rem;
+    color: red;
+    border: 1px solid red;
+    white-space: pre-wrap;
+}
+
+#errPhone{
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 0;
 }
