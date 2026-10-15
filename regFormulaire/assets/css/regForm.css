@@ -8,6 +8,7 @@ html {
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 1.6rem;
+   
 }
 
 h1, h2 {
@@ -64,4 +65,5 @@ fieldset{
     display: inline-block;
     vertical-align: middle;
     margin-left: 0;
+    
 }

@@ -1,0 +1,13 @@
+table{
+    border: 2px solid #758CA5;
+    padding: 0;
+    margin: 1rem;
+}
+th,td{
+    border: 2px solid #758CA5;
+    margin: 0;
+    padding: 10px;
+}
+tr{
+    border: 2px solid #758CA5;
+}
