@@ -2,12 +2,17 @@ table{
     border: 2px solid #758CA5;
     padding: 0;
     margin: 1rem;
+    border-collapse: collapse;
+    text-align: center;
 }
 th,td{
     border: 2px solid #758CA5;
     margin: 0;
     padding: 10px;
 }
-tr{
-    border: 2px solid #758CA5;
+.btnSupp{
+ background-color: #546a77;
+    border: none;
+    color: #758CA5;
+    
 }

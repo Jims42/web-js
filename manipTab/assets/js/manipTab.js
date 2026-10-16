@@ -11,12 +11,17 @@ let prenom;
 let nom;
 
 
+
 const myTab=document.querySelector("table");
 const myThead=myTab.createTHead();
 const titleRow=myThead.insertRow();
 
+
+
 let tabTitle=["nom", "prénom", "mail"];
-for(let j=0;j<3;j++){
+tabTitle.push("Supprimmer");
+
+for(let j=0;j<tabTitle.length;j++){
     let myCell=document.createElement('th');
     myCell.textContent=tabTitle[j];
     titleRow.appendChild(myCell);
@@ -33,12 +38,22 @@ const myRowBody=myTbody.insertRow();
 
 const myCellNom=myRowBody.insertCell();
 myCellNom.textContent=nom;
+
 const myCellPrenom=myRowBody.insertCell();
 myCellPrenom.textContent=prenom;
+
 const myCellMail=myRowBody.insertCell();
 let prenomMail=prenom.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, '');
 let nomMail=nom.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, '');
 myCellMail.textContent=`${prenomMail}.${nomMail}@example.com`
+let myCellSupp=myRowBody.insertCell();
+let btnSupp=document.createElement('button');
+btnSupp.className="btnSupp";
+btnSupp.textContent="X";
+btnSupp.id="btnSuppr";
+btnSupp.type="button";
+myCellSupp.appendChild(btnSupp);
+
 
 
     const li=document.createElement('li');
@@ -46,5 +61,15 @@ li.className="litab";
 li.textContent=tabpeople;
 nameTab.appendChild(li);
 }
+const suppBtn=document.querySelectorAll('.btnSupp');
+suppBtn.forEach((btnsup) => {
+    btnsup.addEventListener("click",(del)=>{
 
+  const parentCard = closest('titleD');
+    if (parentCard) {
+    parentCard.remove();
+    }
+        console.log("testsup");
+    })
+});
 
