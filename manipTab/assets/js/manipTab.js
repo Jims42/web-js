@@ -1,75 +1,131 @@
-const people=['Mike Dev', 'John Makenzie', 'léa Grande'];
-const nameTab=document.getElementById('nameTab');
-nameTab.setAttribute("style","list-style: none");
-const myBody=document.querySelector('body');
-myBody.style.backgroundColor="#536B78";
-myBody.style.color="#ACCBE1";
-const myDiv=document.getElementById('wrap');
-myDiv.style.border="2px solid #ACCBE1";
-myDiv.style.borderRadius="12px";
+const people = ["Mike Dev", "John Makenzie", "léa Grande"];
+const nameTab = document.getElementById("nameTab");
+nameTab.setAttribute("style", "list-style: none");
+const myBody = document.querySelector("body");
+myBody.style.backgroundColor = "#536B78";
+myBody.style.color = "#ACCBE1";
+
+const myDivs = document.querySelectorAll(".block");
+myDivs.forEach(myDiv=>{
+myDiv.style.border = "2px solid #ACCBE1";
+myDiv.style.borderRadius = "12px";
+myDiv.style.margin="10px";
+myDiv.style.padding="10px";
+});
+const myDivAdd=document.getElementById('addLigne');
+myDivAdd.style.border="1px dotted #ACCBE1";
+myDivAdd.style.paddingTop="0";
 let prenom;
 let nom;
 
+const myTab = document.querySelector("table");
+const myThead = myTab.createTHead();
+const titleRow = myThead.insertRow();
 
-
-const myTab=document.querySelector("table");
-const myThead=myTab.createTHead();
-const titleRow=myThead.insertRow();
-
-
-
-let tabTitle=["nom", "prénom", "mail"];
+let tabTitle = ["nom", "prénom", "mail"];
 tabTitle.push("Supprimmer");
 
-for(let j=0;j<tabTitle.length;j++){
-    let myCell=document.createElement('th');
-    myCell.textContent=tabTitle[j];
-    titleRow.appendChild(myCell);
+for (let j = 0; j < tabTitle.length; j++) {
+  let myCell = document.createElement("th");
+  myCell.textContent = tabTitle[j];
+  titleRow.appendChild(myCell);
 }
-const myTbody=myTab.createTBody();
-const titleD=myTbody.insertRow();
+const myTbody = myTab.createTBody();
+//const titleD = myTbody.insertRow();
 
-for (let i=0;i<people.length;i++){
-    let tabpeople=people[i];
-    prenom=tabpeople.split(" ")[0];
-    nom=tabpeople.split(" ")[1];
+for (let i = 0; i < people.length; i++) {
 
-const myRowBody=myTbody.insertRow();
+    //SEPARATION NOM PRENOM
+  let tabpeople = people[i];
+  prenom = tabpeople.split(" ")[0];
+  nom = tabpeople.split(" ")[1];
+//INSERTION LIGNE TR 
+  const myRowBody = myTbody.insertRow();
+  myRowBody.id = "ligne" + (i + 1);
+//INSERTION CASE NOM
+  const myCellNom = myRowBody.insertCell();
+  myCellNom.textContent = nom;
+//INSERTION CASE PRENOM
+  const myCellPrenom = myRowBody.insertCell();
+  myCellPrenom.textContent = prenom;
+//INSERTION CASE EMAIL
+  const myCellMail = myRowBody.insertCell();
+  let prenomMail = prenom
+    .toLowerCase()  //MINUSCULE
+    .normalize("NFD")  //ENLEVE ACCENT
+    .replace(/[\u0300-\u036f]/g, "");
+  let nomMail = nom
+    .toLowerCase()  //MINUSCULE
+    .normalize("NFD")  //ENLEVE ACCENT
+    .replace(/[\u0300-\u036f]/g, "");
+  myCellMail.textContent = `${prenomMail}.${nomMail}@example.com`;
+//INSERTION CASE SUPP
+  let myCellSupp = myRowBody.insertCell();
+  let btnSupp = document.createElement("button");
+  btnSupp.className = "btnSupp";
+  btnSupp.textContent = "X";
+  btnSupp.id = "btnSuppr" + (i+1);
+  btnSupp.type = "button";
+//SUPPRESSION AU CLICK DIRECT DANS LA BOUCLE
+  //btnSupp.addEventListener('click',() =>{
+  //myRowBody.remove();
+  //});
 
-const myCellNom=myRowBody.insertCell();
-myCellNom.textContent=nom;
+  myCellSupp.appendChild(btnSupp);
 
-const myCellPrenom=myRowBody.insertCell();
-myCellPrenom.textContent=prenom;
-
-const myCellMail=myRowBody.insertCell();
-let prenomMail=prenom.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, '');
-let nomMail=nom.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, '');
-myCellMail.textContent=`${prenomMail}.${nomMail}@example.com`
-let myCellSupp=myRowBody.insertCell();
-let btnSupp=document.createElement('button');
-btnSupp.className="btnSupp";
-btnSupp.textContent="X";
-btnSupp.id="btnSuppr";
-btnSupp.type="button";
-myCellSupp.appendChild(btnSupp);
-
-
-
-    const li=document.createElement('li');
-li.className="litab";
-li.textContent=tabpeople;
-nameTab.appendChild(li);
+  const li = document.createElement("li");
+  li.className = "litab";
+  li.textContent = tabpeople;
+  nameTab.appendChild(li);
 }
-const suppBtn=document.querySelectorAll('.btnSupp');
+//SUPPRESSION HORS BOUCLE
+const suppBtn = document.querySelectorAll(".btnSupp");
 suppBtn.forEach((btnsup) => {
-    btnsup.addEventListener("click",(del)=>{
-
-  const parentCard = closest('titleD');
-    if (parentCard) {
-    parentCard.remove();
-    }
-        console.log("testsup");
-    })
+  btnsup.addEventListener("click", (event) => {
+    const ligne = event.target.closest("tr");
+    console.log("ID supp :", ligne.id);
+    ligne.remove();
+  });
 });
-
+//ZONE AJOUTER PERSONNE
+const titre=document.createElement("h2");
+titre.style.marginTop="0";
+titre.textContent="Ajouter une personne";
+myDivAdd.appendChild(titre);
+//CREATIONLABEL ET INPUT PRENOM
+const labPrenom=document.createElement("label");
+labPrenom.setAttribute('for','addPrenom');
+labPrenom.textContent="Prénom : ";
+const myPrenomAdd=document.createElement('input');
+myPrenomAdd.id="addPrenom";
+myPrenomAdd.setAttribute('type','texte');
+myPrenomAdd.className="deco";
+//CREATION LABEL ET INPUT NOM
+const labNom=document.createElement("label");
+labNom.setAttribute('for','addNom');
+labNom.textContent="Nom : ";
+const myNomAdd=document.createElement('input');
+myNomAdd.id="addNom";
+myNomAdd.setAttribute('type','texte');
+myNomAdd.className="deco";
+//CREATION BOUTTON 
+const myBoutonAdd=document.createElement('button');
+myBoutonAdd.id="addButon";
+myBoutonAdd.textContent="Ajouter";
+myBoutonAdd.setAttribute('type','button');
+myBoutonAdd.className="deco";
+//INSERTION DES CREATIONS
+myDivAdd.appendChild(labPrenom);
+myDivAdd.appendChild(myPrenomAdd);
+myDivAdd.appendChild(labNom);
+myDivAdd.appendChild(myNomAdd);
+myDivAdd.appendChild(myBoutonAdd);
+//MISE EN FORME
+const myDeco=document.querySelectorAll(".deco");
+myDeco.forEach(deco=>{
+    deco.style.backgroundColor="#536B78";
+    deco.style.border="2px solid #ACCBE1";
+    deco.style.color="#ACCBE1";
+    deco.style.margin="10px";
+    deco.style.padding="10px";
+});

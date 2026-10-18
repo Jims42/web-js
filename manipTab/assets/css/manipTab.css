@@ -13,6 +13,10 @@ th,td{
 .btnSupp{
  background-color: #546a77;
     border: none;
-    color: #758CA5;
+    /*color: #758CA5;*/
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
     
 }
+
