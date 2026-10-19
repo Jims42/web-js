@@ -1,0 +1,10 @@
+label{
+    display: inline-block;
+    width: 130px;
+    margin-top: 5px;
+}
+#valider{
+    background-color: #67c067;
+    border:2px solid #023d02;
+    margin: 5px 0 0 200px;
+}
