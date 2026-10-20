@@ -5,16 +5,27 @@ const myEmployee= {
     salary: 2150
 }
 
-const myTbody=document.querySelector('tbody');
+const myTitre=document.getElementById('titre');
+    myTitre.textContent+=`${myEmployee.firstname} ${myEmployee.lastname}`;
 
-function ajoutLigne(_personne){
-    let prenom=_personne.values[1];
-    let nom=_personne.values[0];
-    console.log("nom" +nom+" "+prenom);
-const myRow=myTbody.insertRow();
-const myName=myRow.insertCell();
-myName.textContent=nom;
-myRow.appendChild(myName);
+function ajoutLigne(myEmployee){
+
+    const myTbody=document.querySelector('tbody');
+    const Email=`${myEmployee.firstname.toLowerCase()}.${myEmployee.lastname.toLowerCase()}@example.com`;
+    const myRow=myTbody.insertRow(-1);
+
+    const myNom=myRow.insertCell(-1);
+    const myPrenom=myRow.insertCell(-1);
+    const myAnniv=myRow.insertCell(-1);
+    const myEmail=myRow.insertCell(-1);
+    const mySalaire=myRow.insertCell(-1);
+
+    myNom.textContent=myEmployee.lastname;
+    myPrenom.textContent=myEmployee.firstname;
+    myAnniv.textContent=myEmployee.birthday;
+    myEmail.textContent=Email;
+    mySalaire.textContent=`${myEmployee.salary} €`;
+
 
 
 }
