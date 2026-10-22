@@ -18,13 +18,13 @@ function ajoutLigne(){
     myTitre.textContent+=`${myEmployee.firstname} ${myEmployee.lastname}`;
 
     const Email=`${myEmployee.firstname.toLowerCase()}.${myEmployee.lastname.toLowerCase()}@example.com`;
-    const myRow=myTbody.insertRow(-1);
+    const myRow=myTbody.insertRow();
 
-    const myNom=myRow.insertCell(-1);
-    const myPrenom=myRow.insertCell(-1);
-    const myAnniv=myRow.insertCell(-1);
-    const myEmail=myRow.insertCell(-1);
-    const mySalaire=myRow.insertCell(-1);
+    const myNom=myRow.insertCell();
+    const myPrenom=myRow.insertCell();
+    const myAnniv=myRow.insertCell();
+    const myEmail=myRow.insertCell();
+    const mySalaire=myRow.insertCell();
 
     myNom.textContent=myEmployee.lastname;
     myPrenom.textContent=myEmployee.firstname;
@@ -107,21 +107,15 @@ btnEnrgistre.className="deco";
 
 
 const myDiv1=document.getElementById('div1');
-myDiv1.appendChild(labPrenom);
-myDiv1.appendChild(inputPrenom);
+myDiv1.append(labPrenom, inputPrenom);
 const myDiv2=document.getElementById('div2');
-myDiv2.appendChild(labNom);
-myDiv2.appendChild(inputNom);
+myDiv2.append(labNom, inputNom);
 const myDiv3=document.getElementById('div3');
-myDiv3.appendChild(labAnniv);
-myDiv3.appendChild(inputAnniv);
+myDiv3.append(labAnniv, inputAnniv);
 const myDiv4=document.getElementById('div4');
-myDiv4.appendChild(labSal);
-myDiv4.appendChild(inputSal);
+myDiv4.append(labSal, inputSal);
 const myDiv5=document.getElementById('div5');
-myDiv5.appendChild(space);
-myDiv5.appendChild(btnEnrgistre);
-
+myDiv5.append(space, btnEnrgistre);
 
 const myDeco=document.querySelectorAll('.deco');
 myDeco.forEach((deco)=>{
@@ -154,7 +148,7 @@ if ( myEmployee.firstname != inputPrenom.value) {
     if ( myEmployee.birthday != inputAnniv.value) {
         myEmployee.birthday=inputAnniv.value;   
     }
-    if ( myEmployee.salary != inputSal.value) {
+    if ( myEmployee.salary < inputSal.value) {
         myEmployee.salary=inputSal.value;   
     }
  

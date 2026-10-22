@@ -36,3 +36,46 @@ else if (key == "birthday") {
     myCell.textContent = myEmployee[key];
   }
 }
+function majFormu (_monObjet){
+const txtNom=document.getElementById('txtNom');
+txtNom.value=_monObjet.lastname;
+const txtPrenom=document.getElementById('txtPrenom');
+txtPrenom.value=_monObjet.firstname;
+const txtBirthday=document.getElementById('txtBirthday');
+txtBirthday.value=_monObjet.birthday;
+const txtSal=document.getElementById('txtSalary');
+txSalary.value=_monObjet.salary;
+}
+majFormu(myEmployee);
+
+
+const btnValidation=document.querySelector('#btnValidation');
+btnValidation.addEventListener('click',function(event){
+  event.preventDefault();
+  if(txtNom.value!=myEmployee.lastname){
+    myEmployee.lastname=txtNom.value;
+  }
+  if(txtPrenom.value!=myEmployee.firstname){
+    myEmployee.firstname=txtPrenom.value;
+  }
+  if(txtBirthday.value!=myEmployee.birthday){
+    try {
+      const dateNaiss=new date(birthday.value);
+      const dateJour=new date();
+      if(dateJour<dateNaiss){
+        console.error("date dans le passée");
+
+    } else{
+      myEmployee.birthday=txtBirthday.value;   
+     }
+     } catch (error) {
+      console.error(error+" date erronée");
+    }
+    }else{
+    myEmployee.birthday=txtBirthday.value;
+  }
+  if(txtSal.value>myEmployee.salary){
+    myEmployee.salary=txtSal.value;
+  }
+
+})

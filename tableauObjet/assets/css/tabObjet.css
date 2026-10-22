@@ -1,0 +1,49 @@
+*{
+    box-sizing: border-box;
+}
+form{
+    border: 2px dotted #9C9C88 ;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 20px;
+     color: #794C69;
+
+}
+p{
+    margin: 0 ;
+
+}
+label{
+    display: inline-block;
+    width: 120px;
+}
+#btnCo{
+    color: #794C69;
+    padding: 2px 5px;
+    margin-bottom: 3px;
+}
+input,button{
+    
+    border: 2px solid #8F9680;
+}
+section{
+    border: 3px solid #A28C8A;
+    padding: 15px;
+}
+h1{
+    margin: 0;
+    margin-bottom: 15px;
+}
+#divHead{
+    display: flex;
+    justify-content: space-between;
+}
+#pop{
+    display: none;
+    border: 1px solid #989A85;
+    margin: 0;
+    align-content: center;
+    color: #794C69;
+    background-color:#C1AE9F ;
+}
