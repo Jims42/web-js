@@ -149,6 +149,7 @@ if ( myEmployee.firstname != inputPrenom.value) {
         myEmployee.birthday=inputAnniv.value;   
     }
     if ( myEmployee.salary < inputSal.value) {
+        console.log(typeof);
         myEmployee.salary=inputSal.value;   
     }
  
