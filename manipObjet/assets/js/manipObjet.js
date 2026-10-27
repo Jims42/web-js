@@ -9,7 +9,7 @@ const myTbody=document.querySelector('tbody');
 
     const myTitre=document.getElementById('titre');
 function reset(){
-    myTbody.innerHTML=""
+    myTbody.replaceChildren();
     myTitre.textContent="Profil de "
 }
 
@@ -149,7 +149,7 @@ if ( myEmployee.firstname != inputPrenom.value) {
         myEmployee.birthday=inputAnniv.value;   
     }
     if ( myEmployee.salary < inputSal.value) {
-        console.log(typeof);
+      
         myEmployee.salary=inputSal.value;   
     }
  
