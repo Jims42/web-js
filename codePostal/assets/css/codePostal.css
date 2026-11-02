@@ -1,0 +1,33 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: grey;
+}
+header{
+    justify-items: center;
+    text-align: center;
+    background-color: #e4e0e0;
+    padding: 15px 0;
+}
+h1{
+    color: #424141;
+    margin-bottom: 10px;
+}
+#input-rech ,#btn-valider {
+    display: inline-block;
+    padding: 4px 15px;
+    border-radius: 10px;
+    border: none;
+}
+#input-rech{
+    width: 260px;
+    margin-right: 10px;
+}
+#btn-valider{
+    background-color: gray;
+    color: white;
+}

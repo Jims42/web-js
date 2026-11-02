@@ -8,4 +8,4 @@ const myId=document.getElementById('identifiannt');
 
 
 )
-.catch(error => console.error("erreur : "+error));
+.catch((error) => {console.error("erreur : "+error))};

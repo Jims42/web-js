@@ -57,6 +57,10 @@ function ratio(_data, tabTitre) {
   rempliTable(_data, tabTitre);
   
 }
+function remplirCarte(_data){
+  
+}
+
 
 let tabDonne = [];
 let tabCleDonnee = [];
