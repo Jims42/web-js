@@ -1,0 +1,44 @@
+:root{
+    --fondCouleur:#E6E6E6;
+    --boutonColor:red
+}
+*{
+box-sizing: border-box;
+}
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+header{
+justify-items: center;
+font-variant: small-caps;
+}
+.info{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+
+}
+.input{
+    padding: 12px;
+    background-color: var(--fondCouleur);
+    border: none;
+    border-radius: 7px;
+
+}
+.long{
+    grid-column:1/3 ;
+}
+.area{
+    height: 100px;
+}
+#btn-env{
+grid-row-end: 10px;
+padding: 12px;
+border-radius: 7px;
+border: none;
+background-color: var(--boutonColor);
+color: white;
+width:25%;
+font-variant: small-caps;
+}
