@@ -5,7 +5,7 @@
 }
 body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: grey;
+    background-color: #ccc4c4;
 }
 header{
     justify-items: center;
@@ -30,4 +30,20 @@ h1{
 #btn-valider{
     background-color: gray;
     color: white;
+}
+footer{
+    text-align: end;
+   
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+#resultat{
+    margin: 10px;
+    color: #424141;
+}
+#ville{
+    padding: 10px;
+    margin: 5px;
+    gap: 10px;
 }
