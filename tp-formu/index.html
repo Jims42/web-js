@@ -12,26 +12,36 @@
 <body>
 
     <main>
-        <form id="info">
+        <form id="info" method="get">
             <header>
                 <h1>formulaire</h1>
             </header>
             <article class="info">
-                <input type="text" name="prenom" id="prenom" placeholder="Prénom" class="input">
-                <input type="text" name="nom" id="nom" placeholder="Nom" class="input">
-                <input type="email" name="mail" id="email" placeholder="Email" class="input long">
-                <input type="tel" name="tel" id="tel" placeholder="Tel." class="input">
-                <input type="text" name="civ" id="civ" placeholder="Société/Collectivité" class="input">
-                <textarea name="message" id="message" placeholder="Message" class="input long area" rows=""></textarea>
-                <label for="question1">Comment avez-vous connus <strong>labooite</strong> ?</label>
-                <input type="datalist" name="question1" id="question1" class="input long" itemid="--merci de selectionner une option --">
-                <datalist></datalist>
-                <label for="question2">Vous êtes intéressés par :</label>
-                <input type="datalist" name="question2" id="question2" class="input long">
-                <datalist></datalist>
+
+                <input type="text" name="prenom" id="prenom" placeholder="Prénom*" class="input" required>
                 
-                <label for="accep" class="long"><input type="checkbox" name="accept" id="accept">En cochant ce formulaire, vous autrisez <span></span> à utiliser vos données uniquement dans le cadre du traitement de votre demande.Elles ne seront en aucun cas utilisées à autres fins que celle de vous recontacter.</label>
-                <button type="button" id="btn-env">envoyer</button>
+                <input type="text" name="nom" id="nom" placeholder="Nom*" class="input" required>
+                
+                <input type="email" name="mail" id="email" placeholder="Email*" class="input long" required>
+                
+                <input type="tel" name="tel" id="tel" placeholder="Tel.*" class="input">
+                
+                <input type="text" name="civ" id="civ" placeholder="Société/Collectivité*" class="input">
+                
+                <textarea name="message" id="message" placeholder="Message" class="input long area" rows=""></textarea>
+
+                <label for="question1" class="long">Comment avez-vous connus laboite ?</label>
+                <select id="reponse1" name="question1" class="input long" >
+                    <option value="default">--merci de selectionner une option --</option>
+                </select>
+
+                <label for="question2" class="long">Vous êtes intéressés par :</label>
+                <select id="reponse2" name="question2" class="input long">
+                    <option value="default">-- merci de sélectionner une option --</option>
+                </select>
+                
+                <label for="accept" class="long"><input type="checkbox" name="accept" id="accept" required>En cochant ce formulaire, vous autrisez <span></span> à utiliser vos données uniquement dans le cadre du traitement de votre demande.Elles ne seront en aucun cas utilisées à autres fins que celle de vous recontacter.</label>
+                <button type="submit" id="btn-env">envoyer</button>
 
             </article>
 

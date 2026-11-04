@@ -1,6 +1,6 @@
 :root{
-    --fondCouleur:#E6E6E6;
-    --boutonColor:red
+    --fondCouleur: #ECECEC;
+    --boutonColor:#E91236;
 }
 *{
 box-sizing: border-box;
@@ -8,7 +8,12 @@ box-sizing: border-box;
 body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-
+main{
+    justify-items: center;
+}
+#info{
+    width: 60%;
+}
 header{
 justify-items: center;
 font-variant: small-caps;
@@ -41,4 +46,8 @@ background-color: var(--boutonColor);
 color: white;
 width:25%;
 font-variant: small-caps;
+transition: 0.2s ease;
+}
+#btn-env:hover{
+    transform: scale(1.2);
 }
