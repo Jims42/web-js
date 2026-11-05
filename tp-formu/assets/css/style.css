@@ -46,8 +46,13 @@ background-color: var(--boutonColor);
 color: white;
 width:25%;
 font-variant: small-caps;
-transition: 0.2s ease;
+transition: 0.2s ease
 }
 #btn-env:hover{
     transform: scale(1.2);
+}
+.erreur::placeholder{
+    color:  #E91236;
+    
+
 }

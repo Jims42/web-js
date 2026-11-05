@@ -22,7 +22,18 @@ const myRep2 = document.getElementById("reponse2");
 const myCoche = document.getElementById("accept");
 const myBtnEnv = document.getElementById("btn-env");
 
-console.table(tabDiffusion);
+
+
+function manquant(_data){
+  _data.placeholder="------ * Données manquantes -------";
+  _data.classList.add('erreur')
+  _data.style.fontSize="0.6rem"
+  _data.style.backgroundColor="#fa052e23";
+  _data.style.border="2px solid red";
+}
+
+
+// console.table(tabDiffusion);
 
 function myListe(_data, _hook) {
   _data.forEach((element) => {
@@ -40,23 +51,58 @@ myCoche.addEventListener("click", function (event) {
   const prenom = myPrenom.value.trim();
   const tel = myTel.value.trim();
   const soc = mySoc.value.trim();
-  let bool = false;
+  
+  let question = false;
+  let tabQuestion=[];
+ 
 //--------------------------------------------------------
 
-  const question = document.querySelectorAll("select").forEach((select) => {
+  document.querySelectorAll("select").forEach((select) => {
     if (select.value === "default") {
-      bool = true;
+      question = true;
+      tabQuestion.push(select);
     }
   });
-  const selects = document.querySelectorAll("select");
-  const test = [...selects].some((select) => select.value === "default");
-  
-// -----------------------------------------------------------
-  if (!nom || !prenom || !mail || !tel || !soc || bool) {
+  // const selects = document.querySelectorAll("select");
+  // const test = [...selects].some((select) => select.value === "default");
+
+// const questionInvalide = tabQuestion.length > 0;
+    const allInput=[prenom,nom,mail,tel,soc,tabQuestion.map(s=>s.id)];
+   console.table(allInput);
+//    console.log(allInput.index);
+
+//   const myLab=document.getElementById('labAccept');
+//         const existeSpan=document.querySelectorAll('span');
+//         existeSpan.forEach(span=>span.remove());
+// // -----------------------------------------------------------
+//   if (!nom || !prenom || !mail || !tel || !soc || questionInvalide) {
+//     // event.preventDefault();
+//     alert("tout les champs ne sont pas remplis !");
+
+//    allInput.forEach((selectManquant) => {
+    
+//       const mySpan = document.createElement('span');
+//       mySpan.textContent=`Valeur "${selectManquant} " manquante(s)`;
+//       mySpan.style.color = "red";
+//       mySpan.style.fontSize="0.6rem"
+//       myLab.after(mySpan);
+   
+//       });
+//     }
+    if (!nom || !prenom || !mail || !tel || !soc || question) {
     // event.preventDefault();
     alert("tout les champs ne sont pas remplis !");
+    manquant(myPrenom);manquant(myNom);manquant(myEmail);manquant(myTel);manquant(mySoc)
+      
     event.target.checked = false;
-  } else {
+  } 
+  // else {
     // event.target.checked = event.target.checked ? false : true;
+  // }
+  if(!prenom){
+    manquant(myNom)
+  }else{
+
   }
+  
 });
