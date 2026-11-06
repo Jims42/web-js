@@ -22,87 +22,112 @@ const myRep2 = document.getElementById("reponse2");
 const myCoche = document.getElementById("accept");
 const myBtnEnv = document.getElementById("btn-env");
 
-
+// ------------------ FONCTION  -----------------------------
 
 function manquant(_data){
   _data.placeholder="------ * Données manquantes -------";
   _data.classList.add('erreur')
-  _data.style.fontSize="0.6rem"
-  _data.style.backgroundColor="#fa052e23";
-  _data.style.border="2px solid red";
+  // _data.style.fontSize="0.6rem"
+  // _data.style.backgroundColor="#fa052e23";
+  // _data.style.border="2px solid red";
 }
+function retireErreur(_data, _origine){
+  _data.placeholder=_origine;
+  _data.classList.remove('erreur');
+}
+
 
 
 // console.table(tabDiffusion);
 
 function myListe(_data, _hook) {
+  let compteur=1;
   _data.forEach((element) => {
     let liste = new Option();
     liste.textContent = element;
-    _hook.appendChild(liste);
+    liste.value=compteur;
+     // _hook.appendChild(liste);
+    _hook.add(liste);
+    compteur++;
   });
 }
-myListe(tabDiffusion, myRep1);
-myListe(machaine, myRep2);
+
+function maListOption(_data,_hook){
+  const ajoutOption=_data.map((tab,index)=>{
+    let liste = new Option();
+    liste.textContent = tab;
+    liste.value=index+1;
+    return liste;
+  })
+  _hook.append(...ajoutOption);
+}
+//-------------------------- FIN FONCTION -------------------------
+
+// myListe(tabDiffusion, myRep1);
+// myListe(machaine, myRep2);
+maListOption(tabDiffusion,myRep1);
+maListOption(machaine,myRep2);
 
 myCoche.addEventListener("click", function (event) {
-  const mail = myEmail.value.trim();
-  const nom = myNom.value.trim();
-  const prenom = myPrenom.value.trim();
-  const tel = myTel.value.trim();
-  const soc = mySoc.value.trim();
+   let err=false;
+  const mailVide = myEmail.value.trim()==="";
+  const nomVide = myNom.value.trim()==="";
+  const prenomVide = myPrenom.value.trim()==="";
+  const telVide = myTel.value.trim()==="";
+  const socVide = mySoc.value.trim()==="";
   
   let question = false;
   let tabQuestion=[];
  
-//--------------------------------------------------------
 
   document.querySelectorAll("select").forEach((select) => {
     if (select.value === "default") {
       question = true;
       tabQuestion.push(select);
+      select.classList.add('erreur');
+    }else{
+      select.classList.remove('erreur');
     }
   });
+  //   VERSION PLU RECENTE
   // const selects = document.querySelectorAll("select");
   // const test = [...selects].some((select) => select.value === "default");
+if (prenomVide) {
+    manquant(myPrenom);
+  } else {
+    retireErreur(myPrenom, "Prénom*");
+  }
+if (nomVide) {
+    manquant(myNom);
+  } else {
+    retireErreur(myNom, "Nom*");
+  }
+  if (mailVide) {
+    manquant(myEmail);
+  } else {
+    retireErreur(myEmail, "Email*");
+  }
+  if (telVide) {
+    manquant(myTel);
+  } else {
+    retireErreur(myTel, "Tel*");
+  }
+  if (socVide) {
+    manquant(mySoc);
+  } else {
+    retireErreur(mySoc, "Société/Collectivité*");
+  }
 
-// const questionInvalide = tabQuestion.length > 0;
-    const allInput=[prenom,nom,mail,tel,soc,tabQuestion.map(s=>s.id)];
+    const allInput=[prenomVide,nomVide,mailVide,telVide,socVide,tabQuestion.map(s=>s.id)];
    console.table(allInput);
 //    console.log(allInput.index);
 
-//   const myLab=document.getElementById('labAccept');
-//         const existeSpan=document.querySelectorAll('span');
-//         existeSpan.forEach(span=>span.remove());
-// // -----------------------------------------------------------
-//   if (!nom || !prenom || !mail || !tel || !soc || questionInvalide) {
-//     // event.preventDefault();
-//     alert("tout les champs ne sont pas remplis !");
-
-//    allInput.forEach((selectManquant) => {
-    
-//       const mySpan = document.createElement('span');
-//       mySpan.textContent=`Valeur "${selectManquant} " manquante(s)`;
-//       mySpan.style.color = "red";
-//       mySpan.style.fontSize="0.6rem"
-//       myLab.after(mySpan);
-   
-//       });
-//     }
-    if (!nom || !prenom || !mail || !tel || !soc || question) {
-    // event.preventDefault();
-    alert("tout les champs ne sont pas remplis !");
-    manquant(myPrenom);manquant(myNom);manquant(myEmail);manquant(myTel);manquant(mySoc)
-      
+    if (nomVide || prenomVide || mailVide || telVide || socVide || tabQuestion.length) {
+    alert("tout les champs ne sont pas remplis !"); 
     event.target.checked = false;
   } 
   // else {
     // event.target.checked = event.target.checked ? false : true;
   // }
-  if(!prenom){
-    manquant(myNom)
-  }else{
-
-  }
   
 });

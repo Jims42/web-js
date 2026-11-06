@@ -51,8 +51,13 @@ transition: 0.2s ease
 #btn-env:hover{
     transform: scale(1.2);
 }
+.erreur{
+    font-size: 0.6rem;
+   background-color: #fa052e23;
+   border: 2px solid red;
+}
 .erreur::placeholder{
     color:  #E91236;
     
-
 }
+
