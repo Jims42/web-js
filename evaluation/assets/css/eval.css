@@ -13,12 +13,43 @@ body{
     background-color: var(--color1);
 }
 main{
+    margin: 15px;
+    padding: 15px;
     width: 80%;
     border: 2px solid var(--color6);
 }
 #titre{
+    margin: 0 0 15px 0;
     color: var(--color6);
 }
 table{
+    border-collapse: collapse;
+    border: 2px solid var(--color5);
+    background-color: var(--color4);
     color: var(--color6);
+
+}
+tr,td,th{
+    padding: 2px 10px;
+    border: 2px solid var(--color5);
+}
+th{
+    padding: 0 5px;
+   text-align: center;
+}
+ul{
+    padding: 15px;
+    color: var(--color2);
+}
+#form{
+    margin-bottom: 15px;
+    padding: 2px 10px 5px 10px;
+    border: 1px dotted var(--color6) ;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 15px;
+}
+h2{
+    grid-column: 1/4;
+    margin: 0;
 }
