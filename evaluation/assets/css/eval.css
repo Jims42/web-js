@@ -48,8 +48,30 @@ ul{
     display: grid;
     grid-template-columns: repeat(3,1fr);
     gap: 15px;
+    align-items: center;
 }
 h2{
     grid-column: 1/4;
     margin: 0;
+    color: var(--color3);
+}
+label{
+    color: var(--color3);
+}
+input{
+    width: 305px;
+    grid-column: 2/4;
+    padding: 8px;
+}
+#btn-add{
+    width: 60px;
+    padding:2px 6px;
+}
+#btn-add:hover{
+    transform: scale(1.2);
+}
+.affichage{
+    background-color: var(--color4);
+    border: 2px solid var(--color5);
+    color: var(--color6);
 }
