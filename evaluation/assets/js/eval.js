@@ -85,11 +85,17 @@ _data.sort((a,b)=>b.grade - a.grade);
 console.log(_data);
 }
 function remplirTab(_data){
+
+function formaterCasse(_texte) {
+    if (!_texte) return "";
+    return _texte.charAt(0).toUpperCase() + _texte.slice(1).toLowerCase();
+}
+
     myTbody.querySelectorAll("tr").forEach(row => row.remove());
 _data.forEach(element => {
     let tabName=element.fullname.split(" ");
-    let myNom=tabName[0];
-    let myPrenom=tabName[1];
+    let myNom=formaterCasse(tabName[0]);
+    let myPrenom=formaterCasse(tabName[1]);
 
     const myRrow=myTbody.insertRow();
     const myCellNom=myRrow.insertCell();
@@ -128,9 +134,12 @@ console.log(result);
 }
 function addColObtention(_data,_hookTH,_hookTB){
 
+if(!_hookTH.querySelector('.col-obtenu')){
 const myObtenuCellTH=document.createElement('th');
-_hookTH.appendChild(myObtenuCellTH);
+myObtenuCellTH.classList.add('col-obtenu');
 myObtenuCellTH.textContent="Obtenu";
+_hookTH.appendChild(myObtenuCellTH);
+}
 
 for(let i=0;i<_data.length;i++){
     const myCellObtenu=_hookTB[i].insertCell();
@@ -143,14 +152,24 @@ myCellObtenu.textContent="Oui"
 }
 function AjouterEtudiant(_data){
 
-    let ajoutNom =myInputName.value;
-    let ajoutNote =myInputNote.value;
+    let ajoutNom =myInputName.value.trim();
+    let ajoutNote =parseFloat(myInputNote.value);
+
+    if(!ajoutNom || isNaN(ajoutNote)) return;
+
  _data.push({fullname:ajoutNom,grade:ajoutNote})
 triNote(_data)
 remplirTab(_data)
+
+
+addColObtention(_data,myTrHead,myTbody.rows);
+
 nbEtudiant(_data,mySpanNb);
 moyenne(_data,mySpanMoy)
 noteSupp(_data,mySpanSup);
+
+myInputName.value="";
+myInputNote.value="";
 }
 
 // ------------------------------------ FIN FONCTION ----------------------------
@@ -174,11 +193,6 @@ const btn=document.getElementById('btn-add');
 btn.addEventListener('click',()=>{
     AjouterEtudiant(data)
    
-
- const mesLignes = document.querySelectorAll("tbody tr");
-addColObtention(data,myTrHead,mesLignes)
-
-
 });
 
 
