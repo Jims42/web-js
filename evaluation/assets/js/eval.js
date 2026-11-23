@@ -1,202 +1,224 @@
+const myMain = document.querySelector("main");
+const myTitre = document.createElement("h1");
 
-const myMain=document.querySelector('main');
-const myTitre=document.createElement('h1');
-
-myTitre.id="titre";
-myTitre.textContent="Résultat de l'évaluation";
+myTitre.id = "titre";
+myTitre.textContent = "Résultat de l'évaluation";
 myMain.appendChild(myTitre);
 
-const myTable=document.createElement('table');
-const myThead=myTable.createTHead();
-const myTrHead=myThead.insertRow();
+const myTable = document.createElement("table");
+const myThead = myTable.createTHead();
+const myTrHead = myThead.insertRow();
 
-const myNomCelHead=document.createElement('th');
-const myPrenomCellHead=document.createElement('th');
-const myNoteCellHead=document.createElement('th');
+const myNomCelHead = document.createElement("th");
+const myPrenomCellHead = document.createElement("th");
+const myNoteCellHead = document.createElement("th");
 
-const myTbody=myTable.createTBody();
+const myTbody = myTable.createTBody();
 
-
-myTrHead.append(myNomCelHead,myPrenomCellHead,myNoteCellHead);
-myNomCelHead.textContent="Nom";
-myPrenomCellHead.textContent="Prenom";
-myNoteCellHead.textContent="Note"
+myTrHead.append(myNomCelHead, myPrenomCellHead, myNoteCellHead);
+myNomCelHead.textContent = "Nom";
+myPrenomCellHead.textContent = "Prenom";
+myNoteCellHead.textContent = "Note";
 
 myMain.appendChild(myTable);
 
-const myUl=document.createElement('ul');
-const myLiNbEtutudiant=document.createElement('li');
-const mySpanNb=document.createElement('span');
-const myLiMoyenne=document.createElement('li');
-const mySpanMoy=document.createElement('span');
-const myLiSupMoyenne=document.createElement('li');
-const mySpanSup=document.createElement('span')
+const myUl = document.createElement("ul");
+const myLiNbEtutudiant = document.createElement("li");
+const mySpanNb = document.createElement("span");
+const myLiMoyenne = document.createElement("li");
+const mySpanMoy = document.createElement("span");
+const myLiSupMoyenne = document.createElement("li");
+const mySpanSup = document.createElement("span");
 
-myLiNbEtutudiant.textContent="Nombre d'étudiants : ";
-myLiMoyenne.textContent="Moyenne de la classe : ";
-myLiSupMoyenne.textContent="Nombre d'étudiants au dessus de la moyenne : ";
+myLiNbEtutudiant.textContent = "Nombre d'étudiants : ";
+myLiMoyenne.textContent = "Moyenne de la classe : ";
+myLiSupMoyenne.textContent = "Nombre d'étudiants au dessus de la moyenne : ";
 
 myLiNbEtutudiant.appendChild(mySpanNb);
 myLiMoyenne.appendChild(mySpanMoy);
 myLiSupMoyenne.appendChild(mySpanSup);
 myMain.appendChild(myUl);
-myUl.append(myLiNbEtutudiant,myLiMoyenne,myLiSupMoyenne);
+myUl.append(myLiNbEtutudiant, myLiMoyenne, myLiSupMoyenne);
 
-const myForm=document.createElement('form');
-const myTitreH2=document.createElement('h2');
-const myLabel1=document.createElement('label');
-const myInputName=document.createElement('input');
-const myLabel2=document.createElement('label');
-const myInputNote=document.createElement('input');
-const myBtn=document.createElement('button');
+const myForm = document.createElement("form");
+const myTitreH2 = document.createElement("h2");
+const myLabel1 = document.createElement("label");
+const myInputName = document.createElement("input");
+const myLabel2 = document.createElement("label");
+const myInputNote = document.createElement("input");
+const myBtn = document.createElement("button");
 
-myForm.id="form";
+myForm.id = "form";
 myForm.setAttribute("method", "get");
 
-myTitreH2.textContent="Ajouter une note"
+myTitreH2.textContent = "Ajouter une note";
 
-myLabel1.textContent="Nom Prenom :"
-myLabel1.setAttribute("for","name");
+myLabel1.textContent = "Nom Prenom :";
+myLabel1.setAttribute("for", "name");
 
-myInputName.id="name";
-myInputName.className="input ";
+myInputName.id = "name";
+myInputName.className = "input ";
 myInputName.classList.add("affichage");
 
-myLabel2.textContent="Note :"
-myLabel2.setAttribute("for","note");
+myLabel2.textContent = "Note :";
+myLabel2.setAttribute("for", "note");
 
-myInputNote.id="note";
-myInputNote.className="input";
+myInputNote.id = "note";
+myInputNote.className = "input";
 myInputNote.classList.add("affichage");
 
-myBtn.textContent="Ajouter";
-myBtn.setAttribute("type","button")
-myBtn.id="btn-add"
+myBtn.textContent = "Ajouter";
+myBtn.setAttribute("type", "button");
+myBtn.id = "btn-add";
 myBtn.classList.add("affichage");
 
 myTitre.after(myForm);
-myForm.append(myTitreH2,myLabel1,myInputName,myLabel2,myInputNote,myBtn)
-
-
+myForm.append(myTitreH2, myLabel1, myInputName, myLabel2, myInputNote, myBtn);
 
 // --------------------------- FUNCTION --------------------------
-function triNote(_data){
-_data.sort((a,b)=>b.grade - a.grade);
-console.log(_data);
+function triNote(_data) {
+  _data.sort((a, b) => b.grade - a.grade);
+  console.log(_data);
 }
-function remplirTab(_data){
-
-function formaterCasse(_texte) {
+function remplirTab(_data) {
+  function formaterCasse(_texte) {
     if (!_texte) return "";
     return _texte.charAt(0).toUpperCase() + _texte.slice(1).toLowerCase();
+  }
+
+  myTbody.querySelectorAll("tr").forEach((row) => row.remove());
+  _data.forEach((element) => {
+    let tabName = element.fullname.split(" ");
+    let myNom = formaterCasse(tabName[0]);
+    let myPrenom = formaterCasse(tabName[1]);
+
+    const myRrow = myTbody.insertRow();
+    const myCellNom = myRrow.insertCell();
+    myCellNom.textContent = myNom;
+    const myCellPrenom = myRrow.insertCell();
+    myCellPrenom.textContent = myPrenom;
+    const myCellNote = myRrow.insertCell();
+    myCellNote.textContent = element.grade;
+    myCellNote.style.textAlign = "right";
+    myCellNote.style.paddingRight = "2px";
+  });
+}
+function nbEtudiant(_data, _hook) {
+  let nb = _data.length;
+  _hook.textContent = nb;
 }
 
-    myTbody.querySelectorAll("tr").forEach(row => row.remove());
-_data.forEach(element => {
-    let tabName=element.fullname.split(" ");
-    let myNom=formaterCasse(tabName[0]);
-    let myPrenom=formaterCasse(tabName[1]);
-
-    const myRrow=myTbody.insertRow();
-    const myCellNom=myRrow.insertCell();
-    myCellNom.textContent=myNom;
-    const myCellPrenom=myRrow.insertCell();
-    myCellPrenom.textContent=myPrenom;
-    const myCellNote=myRrow.insertCell();
-    myCellNote.textContent=element.grade;
-    myCellNote.style.textAlign="right";
-    myCellNote.style.paddingRight="2px"    
-});
+function moyenne(_data, _hook) {
+  const somme = _data.reduce(
+    (accumulator, currentValue) => accumulator + currentValue.grade,
+    0,
+  );
+  let result = somme / _data.length;
+  _hook.textContent = result.toFixed(2);
 }
-function nbEtudiant(_data,_hook){
-    let nb=_data.length;
-    _hook.textContent=nb;   
-}
+function noteSupp(_data, _hook) {
+  let nbEtudiant = 0;
+  const somme = _data.reduce(
+    (accumulator, currentValue) => accumulator + currentValue.grade,
+    0,
+  );
+  let result = somme / _data.length;
+  console.log(result);
 
-function moyenne(_data,_hook){
-const somme=_data.reduce((accumulator,currentValue)=>accumulator+currentValue.grade,0);
-let result =somme/_data.length;
-_hook.textContent=result.toFixed(2);
-
-}
-function noteSupp(_data,_hook){
-    let nbEtudiant=0;
-    const somme=_data.reduce((accumulator,currentValue)=>accumulator+currentValue.grade,0);
-let result =somme/_data.length;
-console.log(result);
-
-    for (let i = 0; i < _data.length; i++) {
-        if (_data[i].grade>result) {
-        nbEtudiant++
-      }  
-    }    
-    _hook.textContent= nbEtudiant;
-}
-function addColObtention(_data,_hookTH,_hookTB){
-
-if(!_hookTH.querySelector('.col-obtenu')){
-const myObtenuCellTH=document.createElement('th');
-myObtenuCellTH.classList.add('col-obtenu');
-myObtenuCellTH.textContent="Obtenu";
-_hookTH.appendChild(myObtenuCellTH);
-}
-
-for(let i=0;i<_data.length;i++){
-    const myCellObtenu=_hookTB[i].insertCell();
-    if(_data[i].grade>=12){
-myCellObtenu.textContent="Oui"
-    }else{
-        myCellObtenu.textContent="Non"
+  for (let i = 0; i < _data.length; i++) {
+    if (_data[i].grade > result) {
+      nbEtudiant++;
     }
+  }
+  _hook.textContent = nbEtudiant;
 }
+function addColObtention(_data, _hookTH, _hookTB) {
+  if (!_hookTH.querySelector(".col-obtenu")) {
+    const myObtenuCellTH = document.createElement("th");
+    myObtenuCellTH.classList.add("col-obtenu");
+    myObtenuCellTH.textContent = "Obtenu";
+    _hookTH.appendChild(myObtenuCellTH);
+  }
+
+  for (let i = 0; i < _data.length; i++) {
+    const myCellObtenu = _hookTB[i].insertCell();
+    if (_data[i].grade >= 12) {
+      myCellObtenu.textContent = "Oui";
+    } else {
+      myCellObtenu.textContent = "Non";
+    }
+  }
 }
-function AjouterEtudiant(_data){
+function AjouterEtudiant(_data) {
+  let ajoutNom = myInputName.value.trim();
+  let ajoutNote = parseFloat(myInputNote.value);
 
-    let ajoutNom =myInputName.value.trim();
-    let ajoutNote =parseFloat(myInputNote.value);
+  if (!ajoutNom || isNaN(ajoutNote)) return;
 
-    if(!ajoutNom || isNaN(ajoutNote)) return;
+  _data.push({ fullname: ajoutNom, grade: ajoutNote });
+  triNote(_data);
+  remplirTab(_data);
 
- _data.push({fullname:ajoutNom,grade:ajoutNote})
-triNote(_data)
-remplirTab(_data)
+  addColObtention(_data, myTrHead, myTbody.rows);
 
+  nbEtudiant(_data, mySpanNb);
+  moyenne(_data, mySpanMoy);
+  noteSupp(_data, mySpanSup);
 
-addColObtention(_data,myTrHead,myTbody.rows);
-
-nbEtudiant(_data,mySpanNb);
-moyenne(_data,mySpanMoy)
-noteSupp(_data,mySpanSup);
-
-myInputName.value="";
-myInputNote.value="";
+  myInputName.value = "";
+  myInputNote.value = "";
 }
 
 // ------------------------------------ FIN FONCTION ----------------------------
 
-fetch('assets/json/eval.json')
-.then(Response=>{
-    return Response.json();})
-.then((data)=>{
+// fetch('assets/json/eval.json')
+// .then(Response=>{
+//     return Response.json();})
+// .then((data)=>{
 
+// triNote(data)
+//   remplirTab(data);
+// nbEtudiant(data,mySpanNb);
+// moyenne(data,mySpanMoy)
+// noteSupp(data,mySpanSup);
 
-triNote(data)
-  remplirTab(data);  
-nbEtudiant(data,mySpanNb);
-moyenne(data,mySpanMoy)
-noteSupp(data,mySpanSup);
+//  const mesLignes = document.querySelectorAll("tbody tr");
+// addColObtention(data,myTrHead,mesLignes)
 
- const mesLignes = document.querySelectorAll("tbody tr");
-addColObtention(data,myTrHead,mesLignes)
+// const btn=document.getElementById('btn-add');
+// btn.addEventListener('click',()=>{
+//     AjouterEtudiant(data)
 
-const btn=document.getElementById('btn-add');
-btn.addEventListener('click',()=>{
-    AjouterEtudiant(data)
-   
-});
+// });
 
+// })
+// .catch((error)=>{
+//     console.error("error : "+error)
+// })
 
-})
-.catch((error)=>{
-    console.error("error : "+error)
-})
+async function loadStudent() {
+  try {
+    const response = await fetch("assets/json/eval.json");
+    if (response.status != 200) {
+      throw new Error("Erreur HTTP : " + response.status);
+    }
+    let data = await response.json();
+    console.log(data);
+    triNote(data);
+    remplirTab(data);
+    nbEtudiant(data, mySpanNb);
+    moyenne(data, mySpanMoy);
+    noteSupp(data, mySpanSup);
+
+    const mesLignes = document.querySelectorAll("tbody tr");
+    addColObtention(data, myTrHead, mesLignes);
+
+    const btn = document.getElementById("btn-add");
+    btn.addEventListener("click", () => {
+      AjouterEtudiant(data);
+    });
+  } catch (error) {
+    console.error("Impossible de charger les objets", error);
+  }
+}
+loadStudent();
